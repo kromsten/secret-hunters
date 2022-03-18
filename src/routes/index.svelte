@@ -1,15 +1,21 @@
 <script lang="ts">
+	import Effects from "../components/effects.svelte";
 	import Pages from "../components/pages.svelte"
 </script>
 
 
-<div class="flexcont">
+<div class="">
 	<Pages />
+	<Effects />
 </div>
 
 
  
 <style>
+
+	div {
+		overflow: hidden;
+	}
 
 	:global(.center) {
 		display: flex;

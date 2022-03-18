@@ -1,7 +1,10 @@
+@use 'sass:color';
+
+
 @use '@material/theme/color-palette';
 
 
-$background: white;
+$background: color-palette.$blue-50;
 
 
 // Svelte Colors!
@@ -12,7 +15,6 @@ $background: white;
   $background: $background,
   $error: color-palette.$red-700,
 );
-
 
 
 a {
@@ -29,4 +31,5 @@ body {
   color: if(theme.contrast-tone($background) == 'dark', #000, #fff);
   padding: 0;
   margin: 0;
+  overflow: hidden;
 }

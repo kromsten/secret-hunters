@@ -8,6 +8,7 @@
 	} from '@smui/top-app-bar';
 
 
+
 	/* import SocialIcons from "@rodneylab/svelte-social-icons"; */
 	import { onMount } from "svelte";
 	
@@ -31,10 +32,12 @@
 
 </script>
 
-<TopAppBar bind:this={topAppBar} variant="standard">
+<TopAppBar bind:this={topAppBar} >
 	<Row>
 		<Section>
-			<Button href="/">Secret Hunters</Button>
+			<Button variant="text" ripple={true}   href="/">
+				Secret Hunters
+			</Button>
 		</Section>
 
 
@@ -42,7 +45,7 @@
 
 			{ #if connected}
 				
-				<Button href="/mint">Mint</Button>
+				<Button href="/mint" color="secondary">Mint</Button>
 
 				<Button href="/collection">My Collection</Button>
 
@@ -60,28 +63,30 @@
 	</Row>
 </TopAppBar>
 
-<AutoAdjust {topAppBar} style="display: flex; justify-content: space-between;">
-	<div class="container">
-		<slot />
-	</div>
-</AutoAdjust>
+<main class="">
+	<slot />
+</main>
+<!-- <AutoAdjust {topAppBar} style="display: flex; justify-content: space-between;">
+</AutoAdjust> -->
 
 
-<footer>
+<!-- <footer>
 	<div class="icon-wrapper">
 	</div>
-
-</footer>
+</footer> -->
 
 <style>
+
+	main {
+		overflow: hidden;
+	}
+
 	footer {
 		padding: 7vh 0;
 		background-color: var(--primary);
-
 		left: 0;
 		bottom: 0;
 		width: 100%;
-
 		margin-top: 20vh;
 	}
 
@@ -92,14 +97,13 @@
 		margin-right: 8vw;
 	}
 
-	.container {
-		max-width: 100vw;
-		margin: 0 auto;
+	/* :global(header, .transparent) {
+		background-color: rgba(0, 0, 0, 0)!important;
 	}
 
-	:global(header) {
-		background-color: var(--primary);
-		
-		z-index: 10;
-	}
+	:global(header a, header button) {
+		color: #1565c0 
+		!important;
+	} */
+	
 </style>
