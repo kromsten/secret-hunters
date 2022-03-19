@@ -9,7 +9,7 @@ $background: color-palette.$blue-50;
 
 // Svelte Colors!
 @use '@material/theme/index' as theme with (
-  $primary: color-palette.$blue-800,
+  $primary: color-palette.$indigo-900,
   $secondary: color-palette.$blue-200,
   $surface: color-palette.$blue-50,
   $background: $background,

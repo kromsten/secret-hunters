@@ -107,7 +107,8 @@
         position: relative;
         width: 100vw;
         height: 100vh;
-        background-image: linear-gradient(0deg, #182848, #2980b9);
+        background-image: linear-gradient(0deg, #2bb3f2, #b3ecff);
+        /* background-image: linear-gradient(0deg, #182848, #2980b9); */
     }
 
     .bubble {
