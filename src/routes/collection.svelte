@@ -1,18 +1,18 @@
 <script lang="ts">
-  import Drawer, { AppContent, Content } from '@smui/drawer';
-  import List, { Item, Text } from '@smui/list';
-  import LayoutGrid, { Cell } from '@smui/layout-grid';
-  import { Image } from "@smui/image-list"
   import { onMount } from "svelte";
-  import { Circle, Circle3 } from 'svelte-loading-spinners'
-  import Button from '@smui/button';
+
+  import { quintOut } from 'svelte/easing';
+	import { crossfade } from 'svelte/transition';
+  import { slide, fly } from 'svelte/transition';
+  import { flip } from 'svelte/animate';
+  import { cubicOut, elasticOut } from 'svelte/easing';
   
-  import Label from '@smui/list/src/Label.svelte';
   import { web3state } from "../ts/stores"
   import { decryptPic } from "../ts/utils";
   
   
   import { State } from "../ts/types"
+
   
   const reloadMax = 20;
     
@@ -22,7 +22,6 @@
 
   let selIndex : number | null = null;
 
-  let main_img : string | undefined = undefined;
   
   let error : string = "";
 
@@ -130,17 +129,202 @@
   })
 
 
+  const tokens = [
+    {
+      image: 'https://pbs.twimg.com/media/FMcBE6WXMAcVI-u?format=jpg&name=medium',
+      id: '0'
+    },
+
+    { 
+      image: 'https://pbs.twimg.com/media/FOdDDFjWYAEaZAh?format=jpg&name=large', 
+      id: "1" 
+    },
+
+    { 
+      image: 'https://pbs.twimg.com/media/FOaRnaSXoAUd-qB?format=jpg&name=large', 
+      id: "2" 
+    },
+
+    { 
+      image: 'https://pbs.twimg.com/media/FOyIu9fXMAUupxJ?format=jpg&name=large', 
+      id: "3" 
+    },
+
+    { 
+      image: 'https://pbs.twimg.com/media/FOuUAPzXoAEpozU?format=jpg&name=large', 
+      id: "4" 
+    },
+
+    { 
+      image: 'https://pbs.twimg.com/media/FNrsrWEVgAA9wHU?format=jpg&name=large', 
+      id: "5" 
+    },
+
+    { 
+      image: 'https://pbs.twimg.com/media/FNQiZBlXIAI_VGO?format=jpg&name=large', 
+      id: "6" 
+    }
+  ]
+
+  let eater : any = null;
+  let food : any = null;
+
+  let lastClicked : EventTarget | null = null;
+  let lastX : number | null = null;
+  let lastY : number | null = null;
+
+
+
+  const onCardClick = (e : MouseEvent , index : number) => {
+    if (eater === tokens[index]) eater = null;
+    else if (food === tokens[index]) food = null;
+    else if (eater === null) {
+      eater = tokens[index];
+
+      
+      const {x, y} = (document?.getElementById("eater")!).getBoundingClientRect();
+      //const {cx, cy} = e.target?.getBoundingClientRect();
+
+
+      lastX = e.clientX - x;
+      lastY = 500 //e.clientY //(e.clientY + y + 500);
+
+
+      console.log("Last X: " + lastX)
+      console.log("Last Y: " + lastY)
+    } 
+    else if (food === null) {
+      food = tokens[index];
+
+      const {x, y} = (document?.getElementById("eater")!).getBoundingClientRect();
+
+      lastX = e.clientX - x;
+      lastY = 500 // e.clientY //+ y + 500;
+
+      console.log("Last X: " + lastX)
+      console.log("Last Y: " + lastY)
+    }
+    
+
+    lastClicked = e.target
+
+    console.log("lastClicked: ", e.clientX, e.clientY)
+    lastY = e.clientY;
+  }
+
+  function whoosh(node, params) {
+		const existingTransform = getComputedStyle(node).transform.replace('none', '');
+
+		return {
+			delay: params.delay || 30,
+			duration: params.duration || 400,
+			easing: params.easing || elasticOut,
+			css: (t, u) => `transform: ${existingTransform} scale(${t})`
+		};
+	}
+
+  function whoosh2(node : any, params : any) {
+		const existingTransform = getComputedStyle(node).transform.replace('none', '');
+
+		return {
+			delay: params.delay || 100,
+			duration: params.duration || 800,
+			//easing: params.easing || elasticOut,
+			css: (t : number, u : number) => {
+        //console.log(`x: ${lastX} * ${u} == ${lastX! * u}`);
+        //console.log(`y: ${lastY} * ${u} == ${lastY! * u}`);
+
+        return `transform: ${existingTransform} translate(${lastX! * u}px, -${lastY! * u}px) `
+      } 
+		};
+	}
+
+
+
 </script>
 
 
+<article class="d-flex flex-column justify-content-center mt-3 mb-5" >
 
-<div class="top_div">
+  <section>
 
-  { #if state === State.Loading }
-    <h5 class="mdc-typography--headline5">Loading collection</h5>
-    <div class="center">
-      <Circle3 />
+    <h5 class="my-0 my-sm-2">My Fishes</h5>
+  
+    <div class="horizontal-scroll rounded my-2">
+      
+      { #each tokens as token, i }
+        <div class="card-wrapper mx-5 my-2">
+
+          <div class="card bg-dark text-white">
+            <img class="card-img" 
+                src={token.image} 
+                alt="fish pic" 
+                on:click={(e) => onCardClick(e, i) }
+            />
+            <!-- <div class="card-img-overlay d-flex justify-content-center align-items-end pb-0">
+              { "Fish #" + token.id }
+            </div> -->
+          </div>
+
+        </div>
+      {/each}
+  
     </div>
+  </section>
+
+
+  <section class="row justify-content-around mt-5">
+
+    <div class="col-4 col-sm-3 col-md-2">
+      <div id="eater">
+        <div class="card rounded bg-dark text-white">
+
+          { #if eater }
+            <img class="card-img" 
+                in:whoosh
+                src={eater.image} 
+                alt="eater pic" 
+                on:click={e => onCardClick(e, eater.id) }
+            />
+          { :else }
+            <div class="empty-card"></div>
+          {/if}
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-1 d-flex justify-content-center align-items-end">
+      <button class="btn btn-outline-light">
+        Eat
+      </button>
+
+    </div>
+    <div class="col-4 col-sm-3 col-md-2">
+      <div id="food">
+        <div class="card rounded bg-dark text-white">
+
+          { #if food }
+            <img class="card-img"
+                in:whoosh
+                src={food.image} 
+                alt="food pic" 
+                on:click={e => onCardClick(e, food.id) }
+            />
+          { :else }
+            <div class="empty-card"></div>
+          {/if}
+
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- { #if state === State.Loading }
+    <h5 class="mdc-typography--headline5">Loading collection</h5>
+ 
   { :else if state === State.Error }
     <div>
       <h6 class="mdc-typography--headline6">
@@ -164,139 +348,6 @@
       </div>
     { :else }
       <div class="wrapper">
-
-        <LayoutGrid>
-          <Cell span={3}>
-            <div class="drawer_wrapper">
-              <Drawer>
-                  <Content>
-                    <List>
-      
-                      { #each nfts as nft, i}
-                          <Item
-                          href="javascript:void(0)"
-                          on:click={async () => {
-                            selIndex = i;
-                            main_img = "data:image/jpg;base64," + nfts[selIndex].page
-                          }}
-                          >
-                        
-                          <Text>Script page #{ nft.num }</Text>
-                          </Item>
-                      {/each}
-                    </List>
-                  </Content>
-                  <Button on:click={() => { 
-
-                      if (state !== State.Updating) {
-                        state = State.Updating;
-                        update();
-                        setTimeout(() => { state = State.Ready }, 5000)
-                      }
-                    }
-                  }
-                  >
-                  
-                  <span class="btn_text">
-                    Update
-                  </span>
-                  { #if state == State.Updating }
-                    <div class="center btn_load">
-                      <Circle size={20} unit="px" color="black"/>
-                    </div>
-                  { /if }
-                </Button>
-
-                  
-
-              </Drawer>
-
-            </div>
-          </Cell>
-
-          <Cell span={6}>
-            <div class="content_wrapper">
-              <AppContent class="app-content">
-                  <div class="main-content">
-                    <pre class="nft_wrapper center">
-
-
-                      <div class="center">
-
-                        { #if selIndex != null && nfts[selIndex] }
-
-                            <Image src={main_img} alt="nft metadata"/>
-                            
-                        {/if}
-
-                      </div>
-
-
-                    </pre>
-                      
-                  </div>
-              </AppContent>
-            </div>
-          </Cell>
-
-          <Cell span={3}>
-            {#if selIndex != null && nfts[selIndex] }
-                            
-                <div class="attrbutes center">
-                  <List>
-
-                    <div>
-                      <Item>
-                        <div class="center rarity">
-
-                          <Label>Rarity:</Label>
-                          <Text>
-                            <strong class="mdc-typography--caption">
-                              {nfts[selIndex].rarity}
-                            </strong>
-                          </Text>
-                        </div>
-                      </Item>
-                    </div>
-
-                    <div class="center column">
-                      <h6 class="mdc-typography--header6">Page:</h6>
-                      <Item on:click={() => { main_img = "data:image/jpg;base64," + nfts[selIndex].page }}>
-                        <Image src="{nfts[selIndex].pub_image}" width=100px height=80px/>
-                      </Item>
-                    </div>
-
-
-                    { #if nfts[selIndex].land  }
-
-                      <div class="center column">
-                        <h6 class="mdc-typography--header6">Land:</h6>
-                        <Item on:click={() => { main_img = "data:image/jpg;base64," + nfts[selIndex].land }}>
-                          <Image src="data:image/jpg;base64,{nfts[selIndex].land}" width=100px height=80px/>
-                        </Item>
-                      </div>
-                    { /if}
-
-
-                    { #if nfts[selIndex].ticket  }
-
-                      <div class="center column">
-                        <h6 class="mdc-typography--header6">Ticket:</h6>
-                        <Item on:click={() => { main_img = nfts[selIndex].ticket; } }>
-                          <Image on:click={() => {}}
-                          src={nfts[selIndex].ticket} width=100px height=80px/>
-                        </Item>
-                      </div>
-                    { /if}
-
-
-
-                  </List>
-                </div>
-                {/if}
-          </Cell>
-
-        </LayoutGrid>
         
         {#if selIndex != null && nfts[selIndex] }
 
@@ -312,19 +363,59 @@
     {/if}
   
   
-  {/if}
-</div>
+  {/if} -->
+
+</article>
 
 
   
 <style>
 
-  .nft_wrapper {
+
+  .horizontal-scroll {
+    overflow-x: auto;
+    white-space: nowrap;
+    background-color: rgb(10, 10, 200, 0.1);
+  }
+
+
+  .horizontal-scroll::-webkit-scrollbar {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+  }
+
+  .horizontal-scroll::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+    background-color: #4a7dde;
+  }
+
+
+  .card-wrapper .card-img {
+    max-height: 60px;
+  }
+
+  .card-wrapper {
+    display: inline-block;
+    float: none;
+  }
+
+  /* #eater .card, #food .card  {
+    min-height: 34vh;
+  } */
+
+  .empty-card {
+    min-height: 110px;
+  }
+
+
+  /* .nft_wrapper {
     flex-direction: row;
   }
 
   .top_div {
-    min-height: 42vh;
+    opacity: 1;
+    z-index: 3;
   }
 
   .drawer_wrapper {
@@ -363,16 +454,9 @@
 
   .btn_load {
     padding: 5%;
-  }
+  } */
 
-  :global(.mdc-image-list__image) {
-    object-fit: cover;
-    height: 100%;
-  }
 
-  :global(.column > .mdc-deprecated-list-item) {
-    min-width: 10vw;
-  }
 
 </style>
 

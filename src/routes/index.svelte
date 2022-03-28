@@ -1,13 +1,12 @@
 <script lang="ts">
-	import Effects from "../components/effects.svelte";
 	import Pages from "../components/pages.svelte"
 </script>
 
 
-<div class="">
+<div class="container">
 	<Pages />
-	<Effects />
 </div>
+
 
 
  

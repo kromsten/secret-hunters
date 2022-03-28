@@ -1,15 +1,6 @@
 <script lang="ts">
-	import Button from '@smui/button';
-	import TopAppBar, {
-		Row,
-		Section,
-		AutoAdjust,
-		TopAppBarComponentDev
-	} from '@smui/top-app-bar';
-
-
-
-	/* import SocialIcons from "@rodneylab/svelte-social-icons"; */
+	import Effects from "../components/effects.svelte";
+	
 	import { onMount } from "svelte";
 	
 	import { web3state } from "../ts/stores"
@@ -28,60 +19,44 @@
 		if (conn  === "true") setupKeplr();
 	})
 
-	let topAppBar: TopAppBarComponentDev;
 
 </script>
 
-<TopAppBar bind:this={topAppBar} >
-	<Row>
-		<Section>
-			<Button variant="text" ripple={true}   href="/">
-				Secret Hunters
-			</Button>
-		</Section>
 
-
-		<Section align="end" toolbar>
-
-			{ #if connected}
+	<header class="navbar navbar-dark bg-dark">
+		<div class="container-fluid">
+			<a href="/" class="navbar-brand">Secret Hunters</a>
+			
+			<div>
+				{ #if connected}
 				
-				<Button href="/mint" color="secondary">Mint</Button>
-
-				<Button href="/collection">My Collection</Button>
-
-				<Button>
+				<button class="btn">
 					{ formatAddress( web3state.address) }
-				</Button>
+				</button>
 
-			{ :else }
-				<Button on:click={()=>setupKeplr()}>Keplr Connect</Button>
-			{/if }
+				{ :else }
+					<button class="btn btn-outline-light" on:click={()=>setupKeplr()}>Keplr Connect</button>
+				{/if }
+			</div>
+
+		</div>
+	</header>
 
 
 
-		</Section>
-	</Row>
-</TopAppBar>
-
-<main class="">
+<main class="container">
 	<slot />
 </main>
-<!-- <AutoAdjust {topAppBar} style="display: flex; justify-content: space-between;">
-</AutoAdjust> -->
+<Effects />
 
 
-<!-- <footer>
-	<div class="icon-wrapper">
-	</div>
-</footer> -->
+
 
 <style>
+	header { z-index: 5; }
+	main { overflow: hidden; }
 
-	main {
-		overflow: hidden;
-	}
-
-	footer {
+	/* footer {
 		padding: 7vh 0;
 		background-color: var(--primary);
 		left: 0;
@@ -95,7 +70,7 @@
 		gap: 1vw;
 		justify-content: end;
 		margin-right: 8vw;
-	}
+	} */
 
 	/* :global(header, .transparent) {
 		background-color: rgba(0, 0, 0, 0)!important;

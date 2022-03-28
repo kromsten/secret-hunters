@@ -1,8 +1,6 @@
 <script lang="ts">
-    import Button from "@smui/button"
     import { web3state } from "../ts/stores"
     import { State } from "../ts/types"
-    import { Buffer  } from 'browser-crypto';
 
     let state : State = State.Ready;
     let error : string = "";
