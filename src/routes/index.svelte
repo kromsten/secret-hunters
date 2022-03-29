@@ -1,10 +1,16 @@
 <script lang="ts">
-	import Pages from "../components/pages.svelte"
+	import Timer from "../components/timer.svelte";
+	import Mint from "../components/mint.svelte"
 </script>
 
 
 <div class="container">
-	<Pages />
+
+	{#if new Date() > new Date(2022,3,4) }
+		<Timer />
+	{ :else }
+		<Mint />
+	{/if}
 </div>
 
 

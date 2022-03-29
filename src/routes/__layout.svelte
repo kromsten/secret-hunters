@@ -30,12 +30,12 @@
 			<div>
 				{ #if connected}
 				
-				<button class="btn">
+				<button class="btn btn-dark">
 					{ formatAddress( web3state.address) }
 				</button>
 
 				{ :else }
-					<button class="btn btn-outline-light" on:click={()=>setupKeplr()}>Keplr Connect</button>
+					<button class="btn btn-dark" on:click={()=>setupKeplr()}>Keplr Connect</button>
 				{/if }
 			</div>
 

@@ -6,22 +6,21 @@ const restAddress = "https://secret-4.api.trivium.network:1317"
 const sSCRTcontract = "secret1k0jntykt7e4g3y88ltc60czgjuqdy4c9e8fzek"
 
 
-
 const sleep = (ms : number) => new Promise((accept) => setTimeout(accept, ms));
 
 
-const tryWait = async (conditionCallback : Function, 
+export const tryWait = async (conditionCallback : () => boolean , 
                 errorText : string,
                 timeout : number = 1200) => {
 
     let counter = 0;
 
     while (conditionCallback()) {
-        counter += 10;
+        counter += 50;
         if (counter > timeout) {
             throw Error(errorText);
         }
-        await sleep(10);
+        await sleep(50);
     }
     
 }
@@ -160,38 +159,71 @@ class Web3State {
         return await this.client.execute(this.contractAddress, { transfer_nft : { token_id, recipient }} )    
     }
 
-    async getTokens() {
-        await tryWait(() => !this.address, "Couldn't get tokens", 5000)
-        return await this.customQueryPermit({ tokens : { owner : this.address }})
-    }
+    async getTokens(forceUpdate : boolean = false) {
 
-
-
-    private async hash(address: string = this.contractAddress): Promise<string> {
-        return await this.client.restClient.getCodeHashByContractAddr(address);
-    }
-
-    private async swap(sSCRT="150") {
-        const swap = {
-            deposit: {}
+        if (!forceUpdate) {
+            const storageData = localStorage.getItem("hunters");
+            if (storageData) return JSON.parse(storageData);
         }
-    
-        const amount = [
-            { 
-                denom: 'uscrt',
-                amount: sSCRT + '000000'
-            }
-        ]
 
-        return await this.client.execute(sSCRTcontract, swap, '', amount);
+        /* const tokens = await this.customQueryPermit({ tokens : { owner : this.address }})
+        localStorage.setItem("hunters", JSON.stringify(tokens)); */
+
+        const tokens = [
+            {
+              image: 'https://pbs.twimg.com/media/FMcBE6WXMAcVI-u?format=jpg&name=medium',
+              id: '0',
+              level: 6
+            },
+        
+            { 
+              image: 'https://pbs.twimg.com/media/FOdDDFjWYAEaZAh?format=jpg&name=large', 
+              id: "1",
+              level: 16
+        
+            },
+        
+            { 
+              image: 'https://pbs.twimg.com/media/FOaRnaSXoAUd-qB?format=jpg&name=large', 
+              id: "2",
+              level: 116
+            },
+        
+            { 
+              image: 'https://pbs.twimg.com/media/FOyIu9fXMAUupxJ?format=jpg&name=large', 
+              id: "3",
+              level: 195 
+            },
+        
+            { 
+              image: 'https://pbs.twimg.com/media/FOuUAPzXoAEpozU?format=jpg&name=large', 
+              id: "4",
+              level: 96
+            },
+        
+            { 
+              image: 'https://pbs.twimg.com/media/FNrsrWEVgAA9wHU?format=jpg&name=large', 
+              id: "5",
+              level: 8562 
+            },
+        
+            { 
+              image: 'https://pbs.twimg.com/media/FNQiZBlXIAI_VGO?format=jpg&name=large', 
+              id: "6",
+              level: 1225 
+            }
+          ]
+        
+        await sleep(2000);
+        return [tokens[0], tokens[1]] // tokens;
     }
+
 
 
     async mint() {
         const response =  await this.client.execute(sSCRTcontract, snip20SendMsg())
         return response;
     }
-
 
 
 

@@ -1,5 +1,3 @@
-import { Buffer  } from 'browser-crypto';
-
 const contractAddress = "";
 const hash = "";
 

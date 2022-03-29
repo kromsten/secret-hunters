@@ -1,3 +1,3 @@
 export enum State {
-    Loading, Decrypting, Ready, Error, Minting, Minted, Updating
+    NotConnected, Loading, Decrypting, Ready, Error, Minting, Minted, Updating
 }

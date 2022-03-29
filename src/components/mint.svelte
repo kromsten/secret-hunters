@@ -1,12 +1,78 @@
 <script lang="ts">
+    import MintDialog from "./mintDialog.svelte";
+
     import { web3state } from "../ts/stores"
     import { State } from "../ts/types"
 
     let state : State = State.Ready;
     let error : string = "";
-    let nft;
+
 
 </script>
+
+
+
+<article class="d-flex justify-content-center align-items-center m-3">
+    <div class="card p-1 py-3 d-flex flex-column align-items-center gap-2">
+        <h6>Whitelisted (-10%)</h6>
+
+        <div class="row d-flex gap-2 align-items-center justify-content-center">
+            <button 
+                type="button"
+                class="col-5 btn btn-dark"
+                data-bs-toggle="tooltip" data-bs-placement="bottom" title="24 sSCRT"
+            >
+                Mint 1
+            </button>
+
+            <button 
+                type="button"
+                class="col-5 btn btn-dark"
+                data-bs-toggle="tooltip" data-bs-placement="bottom" title="36 sSCRT"
+            >
+                Mint 3
+            </button>
+
+            <button 
+                type="button"
+                class="col-5 btn btn-dark"
+                data-bs-toggle="tooltip" data-bs-placement="bottom" title="49 sSCRT"
+            >
+                Mint 5
+            </button>
+
+            <button 
+                type="button"
+                class="col-5 btn btn-dark"
+                data-bs-toggle="tooltip" data-bs-placement="bottom" title="52 sSCRT"
+            >
+                Mint 10
+            </button>
+
+
+            
+        </div>
+    </div>
+</article>
+
+
+<MintDialog />
+
+<style>
+    article {
+        height: 90vh;
+    }
+
+    .card {
+        color: white;
+        background-color: #3285b9c9;
+    }
+
+</style>
+
+<!-- 
+
+    
 
 
 
@@ -100,4 +166,4 @@
     :global(.disabled) {
         background-color:grey!important;
     }
-</style>
+</style> -->
