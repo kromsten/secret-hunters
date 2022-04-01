@@ -1,0 +1,1 @@
+var i;(function(n){n[n.NotConnected=0]="NotConnected",n[n.Loading=1]="Loading",n[n.Decrypting=2]="Decrypting",n[n.Ready=3]="Ready",n[n.Error=4]="Error",n[n.Minting=5]="Minting",n[n.Minted=6]="Minted",n[n.Updating=7]="Updating"})(i||(i={}));export{i as S};

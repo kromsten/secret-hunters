@@ -23,20 +23,21 @@
 
 		
 
-		<link rel="modulepreload" href="/secret-hunters/_app/start-babe861f.js">
-		<link rel="modulepreload" href="/secret-hunters/_app/chunks/vendor-7a029297.js">
-		<link rel="modulepreload" href="/secret-hunters/_app/pages/__layout.svelte-b531b26a.js">
-		<link rel="modulepreload" href="/secret-hunters/_app/chunks/utils-eebc9ffc.js">
-		<link rel="modulepreload" href="/secret-hunters/_app/pages/collection.svelte-0e3fc2c1.js">
-		<link rel="stylesheet" href="/secret-hunters/_app/assets/start-61d1577b.css">
-		<link rel="stylesheet" href="/secret-hunters/_app/assets/pages/__layout.svelte-d3b71541.css">
-		<link rel="stylesheet" href="/secret-hunters/_app/assets/pages/collection.svelte-941247f3.css">
+		<link rel="modulepreload" href="/_app/start-6f20f476.js">
+		<link rel="modulepreload" href="/_app/chunks/vendor-98287fb1.js">
+		<link rel="modulepreload" href="/_app/pages/__layout.svelte-f2ad0892.js">
+		<link rel="modulepreload" href="/_app/chunks/stores-450b2fab.js">
+		<link rel="modulepreload" href="/_app/pages/collection.svelte-b69b37a0.js">
+		<link rel="modulepreload" href="/_app/chunks/types-5217267d.js">
+		<link rel="stylesheet" href="/_app/assets/start-61d1577b.css">
+		<link rel="stylesheet" href="/_app/assets/pages/__layout.svelte-d3b71541.css">
+		<link rel="stylesheet" href="/_app/assets/pages/collection.svelte-5c9e9b0d.css">
 
 		<script type="module">
-			import { start } from "/secret-hunters/_app/start-babe861f.js";
+			import { start } from "/_app/start-6f20f476.js";
 			start({
 				target: document.body,
-				paths: {"base":"/secret-hunters","assets":""},
+				paths: {"base":"","assets":""},
 				session: {},
 				host: location.host,
 				route: true,
@@ -46,8 +47,8 @@
 					status: 200,
 					error: null,
 					nodes: [
-						import("/secret-hunters/_app/pages/__layout.svelte-b531b26a.js"),
-						import("/secret-hunters/_app/pages/collection.svelte-0e3fc2c1.js")
+						import("/_app/pages/__layout.svelte-f2ad0892.js"),
+						import("/_app/pages/collection.svelte-b69b37a0.js")
 					],
 					page: {
 						host: location.host, // TODO this is redundant
@@ -65,53 +66,23 @@
 
 <header class="navbar navbar-dark bg-dark svelte-uynmmd"><div class="container-fluid"><a href="/" class="navbar-brand">Secret Hunters</a>
 			
-			<div><button class="btn btn-outline-light">Keplr Connect</button></div></div></header>
+			<div><button class="btn btn-dark">Keplr Connect</button></div></div></header>
 
 
 
-<main class="container svelte-uynmmd"><article class="d-flex flex-column justify-content-center mt-3 mb-5"><section><h5 class="my-0 my-sm-2">My Fishes</h5>
-  
-    <div class="horizontal-scroll rounded my-2 svelte-1xyk41y"><div class="card-wrapper mx-5 my-2 svelte-1xyk41y"><div class="card bg-dark text-white"><img class="card-img svelte-1xyk41y" src="https://pbs.twimg.com/media/FMcBE6WXMAcVI-u?format=jpg&amp;name=medium" alt="fish pic">
-            </div>
-
-        </div><div class="card-wrapper mx-5 my-2 svelte-1xyk41y"><div class="card bg-dark text-white"><img class="card-img svelte-1xyk41y" src="https://pbs.twimg.com/media/FOdDDFjWYAEaZAh?format=jpg&amp;name=large" alt="fish pic">
-            </div>
-
-        </div><div class="card-wrapper mx-5 my-2 svelte-1xyk41y"><div class="card bg-dark text-white"><img class="card-img svelte-1xyk41y" src="https://pbs.twimg.com/media/FOaRnaSXoAUd-qB?format=jpg&amp;name=large" alt="fish pic">
-            </div>
-
-        </div><div class="card-wrapper mx-5 my-2 svelte-1xyk41y"><div class="card bg-dark text-white"><img class="card-img svelte-1xyk41y" src="https://pbs.twimg.com/media/FOyIu9fXMAUupxJ?format=jpg&amp;name=large" alt="fish pic">
-            </div>
-
-        </div><div class="card-wrapper mx-5 my-2 svelte-1xyk41y"><div class="card bg-dark text-white"><img class="card-img svelte-1xyk41y" src="https://pbs.twimg.com/media/FOuUAPzXoAEpozU?format=jpg&amp;name=large" alt="fish pic">
-            </div>
-
-        </div><div class="card-wrapper mx-5 my-2 svelte-1xyk41y"><div class="card bg-dark text-white"><img class="card-img svelte-1xyk41y" src="https://pbs.twimg.com/media/FNrsrWEVgAA9wHU?format=jpg&amp;name=large" alt="fish pic">
-            </div>
-
-        </div><div class="card-wrapper mx-5 my-2 svelte-1xyk41y"><div class="card bg-dark text-white"><img class="card-img svelte-1xyk41y" src="https://pbs.twimg.com/media/FNQiZBlXIAI_VGO?format=jpg&amp;name=large" alt="fish pic">
-            </div>
-
-        </div></div></section>
-
-
-  <section class="row justify-content-around mt-5"><div class="col-4 col-sm-3 col-md-2"><div id="eater"><div class="card rounded bg-dark text-white"><div class="empty-card svelte-1xyk41y"></div></div></div></div>
-
-    <div class="col-1 d-flex justify-content-center align-items-end"><button class="btn btn-outline-light">Eat
-      </button></div>
-    <div class="col-4 col-sm-3 col-md-2"><div id="food"><div class="card rounded bg-dark text-white"><div class="empty-card svelte-1xyk41y"></div></div></div></div></section>
-
+<main class="container svelte-uynmmd"><article class="d-flex flex-column justify-content-center mt-3 mb-5"><section class="my-3"><div class="horizontal-scroll rounded my-2 svelte-etxq59"><div class="d-flex align-items-center justify-content-center" style="color:black; height: 100px;">Not Connected</div></div></section>
 
   
+
 
 </article></main>
-<article class="water svelte-1iczzom"><img class="bubble svelte-1iczzom" style="--delay: 14s;\n        --w: 1vw;\n        --x: 51.141665726875985vw;\n    " src="bubble.svg" alt="bubble" width="50" height="50"><img class="bubble svelte-1iczzom" style="--delay: 3s;\n        --w: 1vw;\n        --x: 34.072812978284475vw;\n    " src="bubble.svg" alt="bubble" width="50" height="50"><img class="bubble svelte-1iczzom" style="--delay: 20s;\n        --w: 1vw;\n        --x: 75.90844538411713vw;\n    " src="bubble.svg" alt="bubble" width="50" height="50"><img class="bubble svelte-1iczzom" style="--delay: 14s;\n        --w: 3vw;\n        --x: 27.962241446731827vw;\n    " src="bubble.svg" alt="bubble" width="50" height="50"><img class="bubble svelte-1iczzom" style="--delay: 20s;\n        --w: 4vw;\n        --x: 65.11590875744398vw;\n    " src="bubble.svg" alt="bubble" width="50" height="50"><img class="bubble svelte-1iczzom" style="--delay: 21s;\n        --w: 1vw;\n        --x: 36.556396153991535vw;\n    " src="bubble.svg" alt="bubble" width="50" height="50"><img class="bubble svelte-1iczzom" style="--delay: 28s;\n        --w: 4vw;\n        --x: 72.77535559881355vw;\n    " src="bubble.svg" alt="bubble" width="50" height="50"><img class="bubble svelte-1iczzom" style="--delay: 30s;\n        --w: 1vw;\n        --x: 30.509602735832164vw;\n    " src="bubble.svg" alt="bubble" width="50" height="50"><img class="bubble svelte-1iczzom" style="--delay: 26s;\n        --w: 1vw;\n        --x: 32.75378203496864vw;\n    " src="bubble.svg" alt="bubble" width="50" height="50"><img class="bubble svelte-1iczzom" style="--delay: 36s;\n        --w: 3vw;\n        --x: 24.64641119898407vw;\n    " src="bubble.svg" alt="bubble" width="50" height="50"><img class="bubble svelte-1iczzom" style="--delay: 31s;\n        --w: 4vw;\n        --x: 26.472383108752805vw;\n    " src="bubble.svg" alt="bubble" width="50" height="50">
+<article class="water svelte-1iczzom"><img class="bubble svelte-1iczzom" style="--delay: 9s;\n        --w: 3vw;\n        --x: 27.373634710797514vw;\n    " src="bubble.svg" alt="bubble" width="50" height="50"><img class="bubble svelte-1iczzom" style="--delay: 13s;\n        --w: 4vw;\n        --x: 56.194030765482225vw;\n    " src="bubble.svg" alt="bubble" width="50" height="50"><img class="bubble svelte-1iczzom" style="--delay: 13s;\n        --w: 0vw;\n        --x: 14.6214342562294vw;\n    " src="bubble.svg" alt="bubble" width="50" height="50"><img class="bubble svelte-1iczzom" style="--delay: 22s;\n        --w: 1vw;\n        --x: 70.42299015115535vw;\n    " src="bubble.svg" alt="bubble" width="50" height="50"><img class="bubble svelte-1iczzom" style="--delay: 16s;\n        --w: 0vw;\n        --x: 5.236131548753688vw;\n    " src="bubble.svg" alt="bubble" width="50" height="50"><img class="bubble svelte-1iczzom" style="--delay: 28s;\n        --w: 0vw;\n        --x: 56.25283706091828vw;\n    " src="bubble.svg" alt="bubble" width="50" height="50"><img class="bubble svelte-1iczzom" style="--delay: 23s;\n        --w: 2vw;\n        --x: 39.69389728340692vw;\n    " src="bubble.svg" alt="bubble" width="50" height="50"><img class="bubble svelte-1iczzom" style="--delay: 34s;\n        --w: 0vw;\n        --x: 25.654909665997785vw;\n    " src="bubble.svg" alt="bubble" width="50" height="50"><img class="bubble svelte-1iczzom" style="--delay: 27s;\n        --w: 4vw;\n        --x: 76.79360174195064vw;\n    " src="bubble.svg" alt="bubble" width="50" height="50"><img class="bubble svelte-1iczzom" style="--delay: 29s;\n        --w: 3vw;\n        --x: 11.57797688826699vw;\n    " src="bubble.svg" alt="bubble" width="50" height="50"><img class="bubble svelte-1iczzom" style="--delay: 32s;\n        --w: 2vw;\n        --x: 27.5445039410031vw;\n    " src="bubble.svg" alt="bubble" width="50" height="50">
 
-<img class="fish right svelte-1iczzom" style="--delay: 5s;\n        --w: 70px;\n        --y: 59.66719171780363vh;\n    " src="fish.svg" alt="fish" width="50"><img class="fish left svelte-1iczzom" style="--delay: 9s;\n        --w: 54px;\n        --y: 39.97728348212546vh;\n    " src="fish.svg" alt="fish" width="50"><img class="fish left svelte-1iczzom" style="--delay: 12s;\n        --w: 62px;\n        --y: 70.69812317496907vh;\n    " src="fish.svg" alt="fish" width="50"><img class="fish right svelte-1iczzom" style="--delay: 21s;\n        --w: 73px;\n        --y: 14.21526160938869vh;\n    " src="fish.svg" alt="fish" width="50"><img class="fish right svelte-1iczzom" style="--delay: 12s;\n        --w: 87px;\n        --y: 79.38003170996548vh;\n    " src="fish.svg" alt="fish" width="50"><img class="fish left svelte-1iczzom" style="--delay: 27s;\n        --w: 76px;\n        --y: 36.84907688464193vh;\n    " src="fish.svg" alt="fish" width="50"><img class="fish right svelte-1iczzom" style="--delay: 31s;\n        --w: 52px;\n        --y: 36.000410797166154vh;\n    " src="fish.svg" alt="fish" width="50">
+<img class="fish right svelte-1iczzom" style="--delay: 6s;\n        --w: 90px;\n        --y: 68.02029302452215vh;\n    " src="fish.svg" alt="fish" width="50"><img class="fish right svelte-1iczzom" style="--delay: 17s;\n        --w: 54px;\n        --y: 51.89463114153589vh;\n    " src="fish.svg" alt="fish" width="50"><img class="fish left svelte-1iczzom" style="--delay: 15s;\n        --w: 93px;\n        --y: 44.53024847020535vh;\n    " src="fish.svg" alt="fish" width="50"><img class="fish right svelte-1iczzom" style="--delay: 12s;\n        --w: 86px;\n        --y: 93.3955400814542vh;\n    " src="fish.svg" alt="fish" width="50"><img class="fish right svelte-1iczzom" style="--delay: 14s;\n        --w: 89px;\n        --y: 89.37185685620894vh;\n    " src="fish.svg" alt="fish" width="50"><img class="fish left svelte-1iczzom" style="--delay: 23s;\n        --w: 68px;\n        --y: 14.930490848773372vh;\n    " src="fish.svg" alt="fish" width="50"><img class="fish right svelte-1iczzom" style="--delay: 19s;\n        --w: 79px;\n        --y: 84.54383118817854vh;\n    " src="fish.svg" alt="fish" width="50">
 
-<img class="shark left svelte-1iczzom" style="--delay: 9s;\n        --w: 118px;\n        --y: 14.090608136392602vh;\n    " src="shark.svg" alt="fish" width="100"><img class="shark left svelte-1iczzom" style="--delay: 12s;\n        --w: 141px;\n        --y: 61.12949764364978vh;\n    " src="shark.svg" alt="fish" width="100">
+<img class="shark right svelte-1iczzom" style="--delay: 14s;\n        --w: 186px;\n        --y: 70.57350764264797vh;\n    " src="shark.svg" alt="fish" width="100"><img class="shark left svelte-1iczzom" style="--delay: 11s;\n        --w: 186px;\n        --y: 23.888104943766596vh;\n    " src="shark.svg" alt="fish" width="100">
 
-<img class="whale left svelte-1iczzom" style="--delay: 29s;\n    --w: 246px;\n    --y: 10.63008853142934vh;\n" src="whale.svg" alt="fish" width="100">
+<img class="whale left svelte-1iczzom" style="--delay: 16s;\n    --w: 262px;\n    --y: 74.65971575482764vh;\n" src="whale.svg" alt="fish" width="100">
 
 
 </article>
@@ -125,7 +96,8 @@
 			var global = global || window;
 		</script>
 
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous" />
+		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 		  
 	</body>
 
